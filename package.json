@@ -1,0 +1,24 @@
+{
+  "name": "magnificent-rest-api",
+  "version": "0.0.0",
+  "description": "A well-engineered REST API",
+  "main": "src/main/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jin-bok/magnificent-rest-api.git"
+  },
+  "keywords": [
+    "tdd",
+    "clean",
+    "design patterns"
+  ],
+  "author": "Jin Bok",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jin-bok/magnificent-rest-api/issues"
+  },
+  "homepage": "https://github.com/jin-bok/magnificent-rest-api#readme"
+}

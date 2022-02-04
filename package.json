@@ -4,6 +4,7 @@
   "description": "A well-engineered REST API",
   "main": "src/main/index.js",
   "scripts": {
+    "start:dev": "nodemon src/main/index.js",
     "test": "jest"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "lint-staged": "^12.3.3",
+    "nodemon": "^2.0.15",
     "standard": "^16.0.4"
   }
 }

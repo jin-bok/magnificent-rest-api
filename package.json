@@ -4,7 +4,7 @@
   "description": "A well-engineered REST API",
   "main": "src/main/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "lint-staged": {
     "*.js": [
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/jin-bok/magnificent-rest-api#readme",
   "devDependencies": {
     "husky": "^7.0.4",
+    "jest": "^27.4.7",
     "lint-staged": "^12.3.3",
     "standard": "^16.0.4"
   }

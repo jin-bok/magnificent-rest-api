@@ -10,13 +10,21 @@ const makeSut = () => {
       return this.accessToken
     }
   }
-
   const authUseCaseSpy = new AuthUseCaseSpy()
   const sut = new LoginRouter(authUseCaseSpy)
   return {
     sut,
     authUseCaseSpy: authUseCaseSpy
   }
+}
+
+const makeAuthUseCaseWithError = () => {
+  class AuthUseCaseSpy {
+    auth () {
+      throw new Error()
+    }
+  }
+  return new AuthUseCaseSpy()
 }
 
 describe('Login Router', () => {
@@ -111,6 +119,19 @@ describe('Login Router', () => {
 
   test('should return HTTP code 500 if AuthUseCaseSpy has no auth method', () => {
     const sut = new LoginRouter({})
+    const httpRequest = {
+      body: {
+        email: 'any_email@any_provider.any_domain',
+        password: 'any_password'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+  })
+
+  test('should return HTTP code 500 if AuthUseCaseSpy throws an error', () => {
+    const authUseCaseSpy = makeAuthUseCaseWithError()
+    const sut = new LoginRouter(authUseCaseSpy)
     const httpRequest = {
       body: {
         email: 'any_email@any_provider.any_domain',

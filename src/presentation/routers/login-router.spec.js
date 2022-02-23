@@ -7,6 +7,7 @@ const makeSut = () => {
     auth (email, password) {
       this.email = email
       this.password = password
+      return this.accessToken
     }
   }
 
@@ -69,7 +70,8 @@ describe('Login Router', () => {
   })
 
   test('should return HTTP code 401 if credentials are invalid', () => {
-    const { sut } = makeSut()
+    const { sut, authUseCaseSpy } = makeSut()
+    authUseCaseSpy.accessToken = null
     const httpRequest = {
       body: {
         email: 'invalid_email@invalid_provider.invalid_domain',
@@ -79,6 +81,19 @@ describe('Login Router', () => {
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(401)
     expect(httpResponse.body).toEqual(new UnauthorizedError())
+  })
+
+  test('should return HTTP code 200 if credentials are valid', () => {
+    const { sut, authUseCaseSpy } = makeSut()
+    authUseCaseSpy.accessToken = 'valid_token'
+    const httpRequest = {
+      body: {
+        email: 'valid_email@valid_provider.valid_domain',
+        password: 'valid_password'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
   })
 
   test('should return HTTP code 500 if AuthUseCaseSpy isn\'t injected', () => {

@@ -94,6 +94,7 @@ describe('Login Router', () => {
     }
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body.accessToken).toEqual(authUseCaseSpy.accessToken)
   })
 
   test('should return HTTP code 500 if AuthUseCaseSpy isn\'t injected', () => {

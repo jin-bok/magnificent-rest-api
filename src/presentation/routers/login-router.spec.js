@@ -4,6 +4,7 @@ const UnauthorizedError = require('../helpers/unauthorized-error')
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
+  authUseCaseSpy.accessToken = 'valid_token'
   const sut = new LoginRouter(authUseCaseSpy)
   return {
     sut,

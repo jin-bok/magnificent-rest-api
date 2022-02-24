@@ -5,8 +5,9 @@
   "main": "src/main/index.js",
   "scripts": {
     "start:dev": "nodemon src/main/index.js",
-    "test": "jest --watchAll",
-    "test:staged": "jest"
+    "test": "jest --watch",
+    "test:staged": "jest --findRelatedTests",
+    "test:ci": "jest --coverage"
   },
   "repository": {
     "type": "git",
